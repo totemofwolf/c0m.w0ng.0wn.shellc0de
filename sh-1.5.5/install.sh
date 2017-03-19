@@ -205,11 +205,11 @@ elif [ "$ifcentos" != "" ];then
 	  rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5 &> /dev/null
 #	fi
   sed -i 's/^exclude/#exclude/' /etc/yum.conf
-  yum makecache
+  yum makecache fast
   yum -y remove mysql MySQL-python perl-DBD-MySQL dovecot exim qt-MySQL perl-DBD-MySQL dovecot qt-MySQL mysql-server mysql-connector-odbc php-mysql mysql-bench libdbi-dbd-mysql mysql-devel-5.0.77-3.el5 httpd php mod_auth_mysql mailman squirrelmail php-pdo php-common php-mbstring php-cli &> /dev/null
-  yum -y install autoconf autoconf automake automake curl curl-devel gcc gcc-c++ \
+  yum -y install autoconf autoconf automake automake bison bison-devel curl curl-devel gcc gcc-c++ \
   libaio* libjpeg-devel libmcrypt libmcrypt-devel libpng libpng-devel libtool libtool-ltdl libtool-ltdl-devel libxml2 libxml2-devel \
-  make ncurses ncurses-devel openssl openssl-devel patch unzip
+  jemalloc-devel make ncurses ncurses-devel openssl openssl-devel patch unzip
   yum -y update bash
   iptables -F
 elif [ "$ifubuntu" != "" ];then

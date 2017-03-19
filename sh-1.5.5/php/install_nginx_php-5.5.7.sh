@@ -49,6 +49,7 @@ fi
 make install
 cd ..
 cp ./php-5.5.7/php.ini-production /alidata/server/php/etc/php.ini
+
 #adjust php.ini
 sed -i 's#; extension_dir = \"\.\/\"#extension_dir = "/alidata/server/php/lib/php/extensions/no-debug-non-zts-20121212/"#'  /alidata/server/php/etc/php.ini
 sed -i 's/post_max_size = 8M/post_max_size = 64M/g' /alidata/server/php/etc/php.ini
@@ -56,6 +57,7 @@ sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 64M/g' /alidata/server/
 sed -i 's/;date.timezone =/date.timezone = PRC/g' /alidata/server/php/etc/php.ini
 sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=1/g' /alidata/server/php/etc/php.ini
 sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /alidata/server/php/etc/php.ini
+
 #adjust php-fpm
 cp /alidata/server/php/etc/php-fpm.conf.default /alidata/server/php/etc/php-fpm.conf
 sed -i 's,user = nobody,user=www,g'   /alidata/server/php/etc/php-fpm.conf
@@ -67,6 +69,7 @@ sed -i 's,^pm.start_servers = 2,pm.start_servers = 20,g'   /alidata/server/php/e
 sed -i 's,;pid = run/php-fpm.pid,pid = run/php-fpm.pid,g'   /alidata/server/php/etc/php-fpm.conf
 sed -i 's,;error_log = log/php-fpm.log,error_log = /alidata/log/php/php-fpm.log,g'   /alidata/server/php/etc/php-fpm.conf
 sed -i 's,;slowlog = log/$pool.log.slow,slowlog = /alidata/log/php/\$pool.log.slow,g'   /alidata/server/php/etc/php-fpm.conf
+
 #self start
 install -v -m755 ./php-5.5.7/sapi/fpm/init.d.php-fpm  /etc/init.d/php-fpm
 /etc/init.d/php-fpm start
